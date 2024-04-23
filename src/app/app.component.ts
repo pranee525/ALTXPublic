@@ -36,7 +36,7 @@ responseText:any="";
     this.isLoading = true;
     this.responseText = "";
     this.responseArray = [];
-    this.http.post('https://altx-api.vercel.app/messag', { prompt: message }).subscribe((response: any) => {
+    this.http.post('https://altx-api.vercel.app/message', { prompt: message }).subscribe((response: any) => {
       this.responseArray.push({
         type: 'response',
         message: response.message,
