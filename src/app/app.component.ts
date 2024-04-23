@@ -28,8 +28,9 @@ console.log("clear text");
 
 
   
+  
   sendMessage(message: string) {
-    this.http.post('http://localhost:3000/message', { prompt: message }).subscribe((response: any) => {
+    this.http.post('https://altx-api.vercel.app/message', { prompt: message }).subscribe((response: any) => {
   
       this.responseArray.push({
         type: 'response',
