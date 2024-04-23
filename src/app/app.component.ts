@@ -10,14 +10,15 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   title = 'altex';
 submitText:any="";
+isButtonDisabled:any=true;
 responseArray:any=[];
 responseText:any="";
 
   constructor(private http: HttpClient) {}
   clearText(){
-console.log("clear text");
-    this.submitText="";
 
+    this.submitText="";
+  
 
   };
 
@@ -28,17 +29,21 @@ console.log("clear text");
 
 
   
-  
+  isLoading: boolean = false;
+
   sendMessage(message: string) {
-    this.http.post('https://altx-api.vercel.app/message', { prompt: message }).subscribe((response: any) => {
-  
+    this.isButtonDisabled = true;
+    this.isLoading = true;
+    this.responseText = "";
+    this.responseArray = [];
+    this.http.post('https://altx-api.vercel.app/messag', { prompt: message }).subscribe((response: any) => {
       this.responseArray.push({
         type: 'response',
         message: response.message,
       });
-      this.responseText=this.responseArray[0].message;
+      this.responseText = this.responseArray[0].message;
+      this.isButtonDisabled = false;
+      this.isLoading = false;
     });
-
-
   }
 }
